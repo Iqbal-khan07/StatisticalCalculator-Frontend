@@ -17,7 +17,7 @@ files, it will automatically build your project and update your browser without 
 2.  Run npm install to install the dependencies
 3.  Add a run configuration for "Gulp" and put in "serve" as an argument
 
-![WebStorm Gulp Config](screenshots/gulp.png)
+![WebStorm Gulp Config](screenshots/Capture.PNG)
 
 # Readings
 * [What is Bootstrap?](https://www.tutorialrepublic.com/twitter-bootstrap-tutorial/)
