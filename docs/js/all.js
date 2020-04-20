@@ -2,6 +2,8 @@
     fetch("../data.json").then(function (response) {
         return response.json()
     }).then(function (data) {
+        console.log(data)
+        console.log("I am here")
         let table = document.querySelector("table");
         let tableHeadings = Object.keys(data[0]);
         createTableHead(table, tableHeadings);
