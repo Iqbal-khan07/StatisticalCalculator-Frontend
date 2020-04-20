@@ -1,40 +1,33 @@
 (function () {
+    fetch("../data.json").then(function (response) {
+        return response.json()
+    }).then(function (data) {
+        let table = document.querySelector("table");
+        let tableHeadings = Object.keys(data[0]);
+        createTableHead(table, tableHeadings);
 
-    let mountains = [
-        { name: "Monte Falco", height: 1658, place: "Parco Foreste Casentinesi" },
-        { name: "Monte Falterona", height: 1654, place: "Parco Foreste Casentinesi" },
-        { name: "Poggio Scali", height: 1520, place: "Parco Foreste Casentinesi" },
-        { name: "Pratomagno", height: 1592, place: "Parco Foreste Casentinesi" },
-        { name: "Monte Amiata", height: 1738, place: "Siena" }
-    ];
+        for(let i=0; i < data.length; i++){
+            let cityData = Object.values(data[i]);
+            let tableRow = table.insertRow();
+            for(let content of cityData) {
+                let cell = tableRow.insertCell()
+                cell.appendChild(document.createTextNode(content))
+            }
+        }
 
-    let table = document.querySelector("table");
-    let TableHeadings = Object.keys(mountains[0]);
-    table.classList.add("table")
-    generateTableHead(table, TableHeadings);
-    generateTable(table, mountains);
+    })
 
 })();
 
-function generateTableHead(table, TableHeadings) {
-    let thead = table.createTHead();
-    let row = thead.insertRow();
-    for (let heading of TableHeadings) {
-        let th = document.createElement("th");
-        let text = document.createTextNode(heading);
+function createTableHead(table, tableHeadings){
+    let thead = table.createTHead()
+    let row = table.insertRow(0)
+    for(let heading of  tableHeadings){
+        let th = document.createElement("th")
+        let text = document.createTextNode(heading.substring(3, heading.length));
         th.appendChild(text);
         row.appendChild(th);
     }
-}
-
-function generateTable(table, data) {
-    for (let element of data) {
-        let row = table.insertRow();
-        for (key in element) {
-            let cell = row.insertCell();
-            let text = document.createTextNode(element[key]);
-            cell.appendChild(text);
-        }
-    }
+    thead.appendChild(row)
 }
 
